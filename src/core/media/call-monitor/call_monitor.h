@@ -22,8 +22,6 @@
 
 #include <functional>
 
-class CallMonitorPrivate;
-
 class CallMonitor
 {
 public:
@@ -33,9 +31,6 @@ public:
     ~CallMonitor();
 
     void on_change(const std::function<void(CallMonitor::State)>& func);
-
-private:
-    CallMonitorPrivate *d;
 };
 
 #endif // CALLMONITOR_H
