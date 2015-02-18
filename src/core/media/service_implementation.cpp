@@ -40,7 +40,10 @@
 
 #include "util/timeout.h"
 #include "unity_screen_service.h"
+
+#if 0
 #include <hybris/media/media_recorder_layer.h>
+#endif
 
 namespace media = core::ubuntu::media;
 
@@ -141,8 +144,10 @@ struct media::ServiceImplementation::Private
         auto uscreen_stub_service = dbus::Service::use_service(bus, dbus::traits::Service<core::UScreen>::interface_name());
         uscreen_session = uscreen_stub_service->object_for_path(dbus::types::ObjectPath("/com/canonical/Unity/Screen"));
 
+#if 0
         observer = android_media_recorder_observer_new();
         android_media_recorder_observer_set_cb(observer, &Private::media_recording_started_callback, this);
+#endif
     }
 
     ~Private()
@@ -459,7 +464,9 @@ struct media::ServiceImplementation::Private
     std::shared_ptr<core::dbus::Property<core::IndicatorPower::IsWarning>> is_warning;
     int disp_cookie;
     std::shared_ptr<dbus::Object> uscreen_session;
+#if 0
     MediaRecorderObserver *observer;
+#endif
 
     // Pulse-specific
     pa_mainloop_api *pulse_mainloop_api;

@@ -1,6 +1,7 @@
 pkg_check_modules(PC_GSTREAMER_1_0 REQUIRED gstreamer-1.0)
 pkg_check_modules(PC_PULSE_AUDIO REQUIRED libpulse)
-include_directories(${PC_GSTREAMER_1_0_INCLUDE_DIRS} ${HYBRIS_MEDIA_CFLAGS} ${PC_PULSE_AUDIO_INCLUDE_DIRS})
+# ${HYBRIS_MEDIA_CFLAGS}
+include_directories(${PC_GSTREAMER_1_0_INCLUDE_DIRS} ${PC_PULSE_AUDIO_INCLUDE_DIRS})
 
 # We compile with all symbols visible by default. For the shipping library, we strip
 # out all symbols that are not in core::ubuntu::media*
@@ -64,7 +65,7 @@ target_link_libraries(
   ${DBUS_LIBRARIES}
   ${DBUS_CPP_LDFLAGS}
   ${GLog_LIBRARY}
-  ${HYBRIS_MEDIA_LIBRARIES}
+#  ${HYBRIS_MEDIA_LIBRARIES}
 )
 
 install(
@@ -100,11 +101,12 @@ target_link_libraries(
   ${PC_GSTREAMER_1_0_LIBRARIES}
   ${PROCESS_CPP_LDFLAGS}
   ${GIO_LIBRARIES}
-  ${HYBRIS_MEDIA_LIBRARIES}
+#  ${HYBRIS_MEDIA_LIBRARIES}
   ${PC_PULSE_AUDIO_LIBRARIES}
 )
 
-include_directories(${PROJECT_SOURCE_DIR}/src/ ${HYBRIS_MEDIA_CFLAGS})
+# ${HYBRIS_MEDIA_CFLAGS}
+include_directories(${PROJECT_SOURCE_DIR}/src/)
 
 add_executable(
   media-hub-server
@@ -123,7 +125,7 @@ target_link_libraries(
   ${DBUS_CPP_LDFLAGS}
   ${GLog_LIBRARY}
   ${PC_GSTREAMER_1_0_LIBRARIES}
-  ${HYBRIS_MEDIA_LIBRARIES}
+#  ${HYBRIS_MEDIA_LIBRARIES}
 )
 
 install(
